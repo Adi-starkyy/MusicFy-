@@ -4,6 +4,7 @@ import Home  from './components/Home.jsx'
 import Artists from './components/Artists.jsx'
 import LogIn from './components/LogIn.jsx'
 import SignUp from './components/SignUp.jsx'
+import Aboutus from './components/AboutUs.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const App = () => {
@@ -16,7 +17,10 @@ const App = () => {
             path: "/artists",
             element: <><Navbar /><Artists /></>
         },
-        {}, //About Us path and element
+        {
+            path: "/aboutus",
+            element:<><Navbar /> <Aboutus /></>
+        }, //About Us path and element
         {}, //Contact Us path and element
         {
             path: "/login",
@@ -26,6 +30,7 @@ const App = () => {
             path: "/signup",
             element: <SignUp />
         },
+
     ])
   return (
         <>
