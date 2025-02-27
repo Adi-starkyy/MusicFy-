@@ -1,5 +1,7 @@
 import React from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaInstagram, FaFacebook, FaTwitter, FaMapMarkerAlt } from "react-icons/fa";
+
+
 
 const AboutUs = () => {
   return (
@@ -88,11 +90,11 @@ const AboutUs = () => {
             </p>
 
             <p className="text-lg flex items-center justify-center gap-2">
-              <FaPhone className="text-green-500" /> +1 (123) 456-7890
+              <FaPhone className="text-green-500" /> +91 xxxxxxxxxx
             </p>
 
             <p className="text-lg flex items-center justify-center gap-2">
-              <FaMapMarkerAlt className="text-yellow-500" /> 123 Musicfy Lane, Los Angeles, CA, USA
+              <FaMapMarkerAlt className="text-yellow-500" /> "Address"
             </p>
           </div>
 

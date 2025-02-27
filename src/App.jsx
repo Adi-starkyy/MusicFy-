@@ -19,7 +19,7 @@ const App = () => {
         },
         {
             path: "/aboutus",
-            element:<><Navbar /> <Aboutus /></>
+            element:<><Navbar /><Aboutus /></>
         }, //About Us path and element
         {}, //Contact Us path and element
         {

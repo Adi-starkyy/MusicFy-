@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Google from "../assets/google.jpg";
 import GitHub from "../assets/github.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 const LogIn = () => {
@@ -13,12 +13,20 @@ const LogIn = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {                 // Change this function later to the email and pass from the database
-    e.preventDefault()                          
-    axios.post('', {email, password})
-    .then(result => console.log(result))
-    .catch(err => console.log(err))
+  const handleLogInSubmit = (e) => {                 // Change this function later to the email and pass from the database
+    e.preventDefault();                       
+    axios.post('http://localhost:3001/login', {email, password})
+    .then(result => {
+      console.log(result);
+      if(result.data === "Success"){
+        navigate('/');
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   return (
@@ -40,7 +48,8 @@ const LogIn = () => {
         <h2 className="text-2xl font-semibold text-center text-gray-800">Welcome Back!!</h2>
         <p className="text-gray-600 text-center mb-6">Log in to your account</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogInSubmit}>
+
           {/* Email Field */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm mb-1">Email</label>
@@ -75,11 +84,9 @@ const LogIn = () => {
           </div>
 
           {/* Login Button */}
-          <Link to = "/"> {/*Remeber to route it to the user dashboard */}
             <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md">
                 Log In
             </button>
-          </Link>
         </form>
 
         {/* Divider */}
