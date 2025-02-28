@@ -15,19 +15,32 @@ const LogIn = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
-  const handleLogInSubmit = (e) => {                 // Change this function later to the email and pass from the database
+  const handleLogInSubmit = (e) => {                 
     e.preventDefault();                       
-    axios.post('http://localhost:3001/login', {email, password})
-    .then(result => {
-      console.log(result);
-      if(result.data === "Success"){
-        navigate('/');
-      }
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+    
+    axios.post('http://localhost:3001/login', { email, password })
+      .then(result => {
+        console.log("Login Response:", result.data); // Debugging log
+  
+        if (result.data.success) {
+          localStorage.setItem("user", JSON.stringify({
+            name: result.data.name,
+            email: result.data.email,
+            profileImage: result.data.profileImage || "https://via.placeholder.com/40",
+            token: result.data.token
+          }));
+  
+          navigate('/');  // Redirect to Home
+        } else {
+          alert("Invalid email or password.");
+        }
+      })
+      .catch(err => {
+        console.error("Login Error:", err.response ? err.response.data : err);
+        alert("Something went wrong. Please try again.");
+      });
+  };
+  
 
   return (
     <div
